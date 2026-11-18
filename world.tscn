@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dyrot2so7f437"]
+
+[ext_resource type="Script" uid="uid://u4awt6op315v" path="res://world.gd" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://7wnpj43flon7" path="res://player.tscn" id="2_fj7yv"]
+
+[node name="World" type="Node2D" unique_id=1765084597]
+script = ExtResource("1_f3sb7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=693173677]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=900520274]
+position = Vector2(0, 40)
+scale = Vector2(0.4669619, 0.46696183)
+polygon = PackedVector2Array(0, -85.6601, 17.132019, -85.6601, 17.132019, 137.05618, 68.528076, 137.05618, 119.92413, 188.45224, 256.9803, 188.45224, 256.9803, 256.98032, 325.50836, 256.98032, 325.50836, 188.45224, 376.90442, 188.45224, 448, 160, 512, 160, 582.48865, 188.45224, 668.14874, 188.45224, 668.14874, -85.6601, 685.28076, -85.6601, 685.28076, 308.37637, 0, 308.37637)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D" unique_id=1629621702]
+
+[node name="CharacterBody2D" parent="StaticBody2D/CollisionPolygon2D" unique_id=167670317 instance=ExtResource("2_fj7yv")]
+position = Vector2(48, 80)
+floor_constant_speed = true
+floor_snap_length = 2.0
