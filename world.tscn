@@ -15,7 +15,8 @@ polygon = PackedVector2Array(0, -85.6601, 17.132019, -85.6601, 17.132019, 137.05
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D" unique_id=1629621702]
 
-[node name="CharacterBody2D" parent="StaticBody2D/CollisionPolygon2D" unique_id=167670317 instance=ExtResource("2_fj7yv")]
-position = Vector2(48, 80)
+[node name="CharacterBody2D" parent="." unique_id=167670317 instance=ExtResource("2_fj7yv")]
+position = Vector2(22.414171, 77.35695)
+scale = Vector2(0.4669619, 0.46696183)
 floor_constant_speed = true
 floor_snap_length = 2.0

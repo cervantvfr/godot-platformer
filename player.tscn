@@ -48,3 +48,7 @@ visible = false
 position = Vector2(-1.7881389e-07, -6.0000014)
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_kej8o")
+
+[node name="CoyoteJumpTimer" type="Timer" parent="." unique_id=1443083810]
+wait_time = 0.05
+one_shot = true
