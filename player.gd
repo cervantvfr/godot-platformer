@@ -1,10 +1,7 @@
 extends CharacterBody2D
 
+@export var movement_data : PlayerMovementData
 
-const SPEED = 100.0
-const ACCELERATION = 800.0
-const FRICTION = 1000.0
-const JUMP_VELOCITY = -300.0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coyote_jump_timer: Timer = $CoyoteJumpTimer
 
@@ -14,6 +11,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	handle_acceleration(direction, delta)
 	apply_friction(direction, delta)
+	apply_air_resistance(direction, delta)
 	update_animations(direction)
 	var was_on_floor = is_on_floor()
 	move_and_slide()
@@ -23,24 +21,28 @@ func _physics_process(delta: float) -> void:
 
 func apply_gravity(delta):
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * movement_data.gravity_scale * delta
 
 func handle_jump():
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("ui_accept"):
-			velocity.y = JUMP_VELOCITY
+			velocity.y = movement_data.jump_velocity
 			coyote_jump_timer.stop()
 	elif not is_on_floor():
-		if Input.is_action_just_released("ui_accept") and velocity.y < JUMP_VELOCITY/2:
-			velocity.y = JUMP_VELOCITY/2
+		if Input.is_action_just_released("ui_accept") and velocity.y < movement_data.jump_velocity/2:
+			velocity.y = movement_data.jump_velocity/2
 
 func apply_friction(direction, delta):
-	if direction == 0:
-		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+	if direction == 0 and is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, movement_data.friction * delta)
+
+func apply_air_resistance(direction, delta):
+	if direction == 0 and not is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, movement_data.air_resistance * delta)
 
 func handle_acceleration(direction, delta):
 	if direction != 0:
-		velocity.x = move_toward(velocity.x, SPEED * direction, ACCELERATION * delta)
+		velocity.x = move_toward(velocity.x, movement_data.speed * direction, movement_data.acceleration * delta)
 
 func update_animations(direction):
 	if direction != 0:

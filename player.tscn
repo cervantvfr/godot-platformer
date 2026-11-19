@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7wnpj43flon7"]
 
 [ext_resource type="Script" uid="uid://dlly6fwq8uub2" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Resource" uid="uid://b1lccmf3c4mej" path="res://DefaultPlayerMovementData.tres" id="2_hqtel"]
 [ext_resource type="Texture2D" uid="uid://mjetjg83buri" path="res://Tiles/Characters/tile_0000.png" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://doax56qohd42q" path="res://Tiles/Characters/tile_0001.png" id="3_hqtel"]
 
@@ -35,6 +36,7 @@ size = Vector2(8.000001, 12)
 
 [node name="Player" type="CharacterBody2D" unique_id=167670317]
 script = ExtResource("1_onrkg")
+movement_data = ExtResource("2_hqtel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2122150856]
 position = Vector2(2.842171e-14, -7.9999995)
