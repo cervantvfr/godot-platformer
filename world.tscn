@@ -11,7 +11,7 @@ script = ExtResource("1_f3sb7")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=900520274]
 position = Vector2(0, 40)
 scale = Vector2(0.4669619, 0.46696183)
-polygon = PackedVector2Array(0, -85.6601, 17.132019, -85.6601, 17.132019, 137.05618, 68.528076, 137.05618, 119.92413, 188.45224, 256.9803, 188.45224, 256.9803, 256.98032, 325.50836, 256.98032, 325.50836, 188.45224, 376.90442, 188.45224, 448, 160, 512, 160, 582.48865, 188.45224, 668.14874, 188.45224, 668.14874, -85.6601, 685.28076, -85.6601, 685.28076, 308.37637, 0, 308.37637)
+polygon = PackedVector2Array(0, -222.71628, 17.132019, -222.71628, 17.132019, 137.05618, 68.528076, 137.05618, 119.92413, 188.45224, 256.9803, 188.45224, 256.9803, 256.98032, 325.50836, 256.98032, 325.50836, 188.45224, 376.90442, 188.45224, 448, 160, 512, 160, 582.48865, 188.45224, 668.14874, 188.45224, 668.14874, -222.71628, 685.28076, -222.71628, 685.28076, 308.37637, 0, 308.37637)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D" unique_id=1629621702]
 
@@ -20,3 +20,12 @@ position = Vector2(22.414171, 77.35695)
 scale = Vector2(0.4669619, 0.46696183)
 floor_constant_speed = true
 floor_snap_length = 2.0
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1869543127]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" unique_id=1009220573]
+position = Vector2(272, 25.471878)
+scale = Vector2(0.9999999, 0.81640625)
+polygon = PackedVector2Array(0, -50.798096, 0, -1.8028755, 0, 104, 8, 104, 8, -50.798096)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2/CollisionPolygon2D" unique_id=476841068]
