@@ -22,12 +22,17 @@ from HeartBeast's Godot platformer tutorials.
   friction, jump velocity, gravity scale, air resistance, air acceleration)
   live in a `PlayerMovementData` resource, so you can change the feel without
   touching code. See [Tuning movement](#tuning-movement).
-- **Slopes:** the player keeps a constant speed on slopes and snaps to the
-  floor going downhill instead of bouncing off.
-- **Animated character:** idle and run animations, with the sprite flipping
-  to face the direction of movement.
-- **Following camera:** a `Camera2D` on the player keeps them in view as they
-  climb the tall walls of the level.
+- **Slopes:** the player keeps a constant speed on slopes up to 50° and snaps
+  to the floor going downhill instead of bouncing off.
+- **Animated cat character:** idle, run, jump, double-jump, and wall-cling
+  animations, with the sprite flipping to face the direction of movement.
+- **Spikes and respawning:** touching spikes sends the player back to where
+  they started. Each spike is a `spikes.tscn` instance containing a
+  `hazard_area.tscn`, an `Area2D` on the **HazardArea** physics layer. The
+  player's `HazardDetection` area watches only that layer, so any shape you
+  add to a hazard area becomes deadly. See [Physics layers](#physics-layers).
+- **Following camera:** a smoothed `Camera2D` on the player keeps them in
+  view as they climb the tall walls of the level.
 - **Polygon terrain:** the level is built from `CollisionPolygon2D` shapes:
   the floor and tall outer walls, plus a thin wall in the middle for
   practising wall jumps. At runtime `world.gd` copies the main terrain's
@@ -71,6 +76,16 @@ To make your own preset, right-click in the FileSystem dock, choose
 **Create New → Resource…**, pick `PlayerMovementData`, and change its values
 in the Inspector.
 
+## Physics layers
+
+Layer names are set in `project.godot`:
+
+| Layer | Name         | Used by                                               |
+| ----- | ------------ | ----------------------------------------------------- |
+| 1     | `World`      | Terrain (`StaticBody2D` nodes in `world.tscn`)        |
+| 2     | `Player`     | The player's `CharacterBody2D`                        |
+| 3     | `HazardArea` | `hazard_area.tscn`; detected by the player to respawn |
+
 ## Running the project
 
 1. Install [Godot 4.7](https://godotengine.org/download) or later
@@ -83,21 +98,25 @@ in the Inspector.
 
 | File                              | Purpose                                                    |
 | --------------------------------- | ---------------------------------------------------------- |
-| `project.godot`                   | Project settings: main scene, resolution, renderer         |
-| `world.tscn`                      | Main scene: the level geometry (floor, outer walls, middle wall) and the player |
+| `project.godot`                   | Project settings: main scene, resolution, renderer, physics layer names |
+| `world.tscn`                      | Main scene: the level geometry (floor, outer walls, middle wall), spikes, and the player |
 | `world.gd`                        | Draws the terrain from its collision polygon and sets a black background |
-| `player.tscn`                     | Player scene: sprite animations, collision shape, coyote-jump timer, camera |
-| `player.gd`                       | Player movement, jumping, double jump, wall jump, coyote time, and animation logic |
+| `player.tscn`                     | Player scene: cat sprite animations, collision shape, hazard detection area, coyote-jump timer, smoothed camera |
+| `player.gd`                       | Player movement, jumping, double jump, wall jump, coyote time, respawning on hazards, and animation logic |
 | `PlayerMovementData.gd`           | Resource script defining the tunable movement values       |
 | `DefaultPlayerMovementData.tres`  | Default movement preset (used by the player)               |
 | `FastPlayerMovementData.tres`     | Faster movement with a higher jump                         |
 | `SlowPlayerMovementData.tres`     | Slow, floaty movement with low gravity                     |
-| `Tiles/`                          | Kenney Pixel Platformer tiles (not used in a scene yet)    |
-| `Tiles/Characters/`               | Character sprites used by the player                       |
+| `spikes.tscn`                     | Spike trap: a Kenney spike tile plus a hazard area         |
+| `hazard_area.tscn`                | Reusable `Area2D` on the HazardArea layer that respawns the player |
+| `Cat_*.png`                       | Cat character sprite sheets (32×32 frames) used by the player |
+| `Tiles/`                          | Kenney Pixel Platformer tiles (`tile_0068.png` is the spike) |
 
 ## Credits
 
 - **Tutorial:** this project follows Godot tutorials by
   [HeartBeast](https://www.youtube.com/@uheartbeast).
-- **Art:** [Pixel Platformer](https://kenney.nl/assets/pixel-platformer)
+- **Player character:** [Cat Player Asset](https://jumpbutton.itch.io/cat-player-asset)
+  by [JumpButton](https://itch.io/profile/jumpbutton).
+- **Tiles:** [Pixel Platformer](https://kenney.nl/assets/pixel-platformer)
   by [Kenney](https://kenney.nl) (CC0).

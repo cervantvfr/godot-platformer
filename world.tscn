@@ -2,26 +2,29 @@
 
 [ext_resource type="Script" uid="uid://u4awt6op315v" path="res://world.gd" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://7wnpj43flon7" path="res://player.tscn" id="2_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://bcjq6tr6120g4" path="res://spikes.tscn" id="3_tlwt5"]
 
 [node name="World" type="Node2D" unique_id=1765084597]
 script = ExtResource("1_f3sb7")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=693173677]
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=900520274]
-position = Vector2(0, 40)
+position = Vector2(-8, 48)
 scale = Vector2(0.4669619, 0.46696183)
-polygon = PackedVector2Array(0, -222.71628, 17.132019, -222.71628, 17.132019, 137.05618, 68.528076, 137.05618, 119.92413, 188.45224, 256.9803, 188.45224, 256.9803, 256.98032, 325.50836, 256.98032, 325.50836, 188.45224, 376.90442, 188.45224, 448, 160, 512, 160, 582.48865, 188.45224, 668.14874, 188.45224, 668.14874, -222.71628, 685.28076, -222.71628, 685.28076, 308.37637, 0, 308.37637)
+polygon = PackedVector2Array(0, -222.71628, 17.132019, -222.71628, 17.132019, 137.05618, 68.528076, 137.05618, 119.92413, 188.45224, 256.9803, 188.45224, 256.9803, 256.98032, 325.50836, 256.98032, 325.50836, 188.45224, 411.16846, 188.45222, 411.16846, 137.05618, 462.5645, 137.05618, 513.9606, 188.45222, 599.62067, 188.45222, 599.62067, 274.11234, 668.14874, 274.11234, 668.14874, -222.71628, 685.28076, -222.71628, 685.28076, 308.37637, 0, 308.37637)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D" unique_id=1629621702]
 
 [node name="CharacterBody2D" parent="." unique_id=167670317 instance=ExtResource("2_fj7yv")]
-position = Vector2(22.414171, 77.35695)
+position = Vector2(16, 112)
 scale = Vector2(0.4669619, 0.46696183)
 floor_constant_speed = true
 floor_snap_length = 2.0
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1869543127]
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" unique_id=1009220573]
 position = Vector2(272, 25.471878)
@@ -29,3 +32,15 @@ scale = Vector2(0.9999999, 0.81640625)
 polygon = PackedVector2Array(0, -50.798096, 0, -1.8028755, 0, 104, 8, 104, 8, -50.798096)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2/CollisionPolygon2D" unique_id=476841068]
+
+[node name="Spikes" parent="." unique_id=1711789327 instance=ExtResource("3_tlwt5")]
+position = Vector2(272, 176)
+
+[node name="Spikes2" parent="." unique_id=1746333235 instance=ExtResource("3_tlwt5")]
+position = Vector2(288, 176)
+
+[node name="Spikes3" parent="." unique_id=957595696 instance=ExtResource("3_tlwt5")]
+position = Vector2(112, 168)
+
+[node name="Spikes4" parent="." unique_id=751263347 instance=ExtResource("3_tlwt5")]
+position = Vector2(128, 168)

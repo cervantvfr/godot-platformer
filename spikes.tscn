@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bcjq6tr6120g4"]
+
+[ext_resource type="Texture2D" uid="uid://dbw7h71xbrwuo" path="res://Tiles/tile_0068.png" id="1_s0g1x"]
+[ext_resource type="PackedScene" uid="uid://l10chlmtr6us" path="res://hazard_area.tscn" id="2_nrdsm"]
+
+[node name="Spikes" type="Node2D" unique_id=1711789327]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1343076142]
+position = Vector2(8, -8)
+scale = Vector2(0.88888896, 0.88888896)
+texture = ExtResource("1_s0g1x")
+
+[node name="HazardArea" parent="." unique_id=2123508288 instance=ExtResource("2_nrdsm")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HazardArea" unique_id=2000652281]
+visible = false
+position = Vector2(7, 0)
+polygon = PackedVector2Array(1, 0, 4, -7, 5, -7, 8, 0)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="HazardArea" unique_id=338641966]
+visible = false
+polygon = PackedVector2Array(1, 0, 4, -7, 5, -7, 8, 0)

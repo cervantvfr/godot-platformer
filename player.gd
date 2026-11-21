@@ -6,6 +6,7 @@ var air_jump = false
 var just_wall_jumped = false
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coyote_jump_timer: Timer = $CoyoteJumpTimer
+@onready var starting_position = global_position
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -50,7 +51,6 @@ func handle_wall_jump():
 		velocity.x = wall_normal.x * movement_data.speed
 		velocity.y = movement_data.jump_velocity
 		just_wall_jumped = true
-	
 
 func apply_friction(direction, delta):
 	if direction == 0 and is_on_floor():
@@ -72,8 +72,17 @@ func handle_air_acceleration(direction, delta):
 
 func update_animations(direction):
 	if direction != 0:
-		animated_sprite_2d.flip_h = (direction > 0)
+		animated_sprite_2d.flip_h = (direction < 0)
+	if is_on_wall_only():
+		animated_sprite_2d.play("on_wall")
+	elif not is_on_floor() and not air_jump:
+		animated_sprite_2d.play("double_jump")
+	elif not is_on_floor():
+		animated_sprite_2d.play("jump")
+	elif direction != 0:
 		animated_sprite_2d.play("run")
 	else:
 		animated_sprite_2d.play("idle")
- 
+
+func _on_hazard_detection_area_entered(area: Area2D) -> void:
+	global_position = starting_position
