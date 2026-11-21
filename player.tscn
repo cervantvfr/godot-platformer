@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dlly6fwq8uub2" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Resource" uid="uid://b1lccmf3c4mej" path="res://DefaultPlayerMovementData.tres" id="2_hqtel"]
-[ext_resource type="Texture2D" uid="uid://by0np7obmut1u" path="res://Cat_idle_1.png" id="3_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://ba6uupvu371jy" path="res://Cat_jump_1.png" id="4_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://cdpmtkh6sqlr5" path="res://Cat_jump_2.png" id="5_dw050"]
-[ext_resource type="Texture2D" uid="uid://cxc82sa8ha2kt" path="res://Cat_against_wall.png" id="6_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://dsn3ubq68nt4x" path="res://Cat_walk_1.png" id="6_b26j0"]
+[ext_resource type="Texture2D" uid="uid://by0np7obmut1u" path="res://Cat/Cat_idle_1.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://ba6uupvu371jy" path="res://Cat/Cat_jump_1.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://cdpmtkh6sqlr5" path="res://Cat/Cat_jump_2.png" id="5_dw050"]
+[ext_resource type="Texture2D" uid="uid://cxc82sa8ha2kt" path="res://Cat/Cat_against_wall.png" id="6_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://dsn3ubq68nt4x" path="res://Cat/Cat_walk_1.png" id="6_b26j0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwjto"]
 atlas = ExtResource("5_dw050")

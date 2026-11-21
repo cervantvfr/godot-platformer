@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxc82sa8ha2kt"
-path="res://.godot/imported/Cat_against_wall.png-0e2de447a4fcb18b805bf041f3c7f66a.ctex"
+uid="uid://ba6uupvu371jy"
+path="res://.godot/imported/Cat_jump_1.png-f6f93be018b3eb1eb649ee00c1ffaddc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Cat_against_wall.png"
-dest_files=["res://.godot/imported/Cat_against_wall.png-0e2de447a4fcb18b805bf041f3c7f66a.ctex"]
+source_file="res://Cat/Cat_jump_1.png"
+dest_files=["res://.godot/imported/Cat_jump_1.png-f6f93be018b3eb1eb649ee00c1ffaddc.ctex"]
 
 [params]
 
