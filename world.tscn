@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://u4awt6op315v" path="res://world.gd" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://7wnpj43flon7" path="res://player.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://bcjq6tr6120g4" path="res://spikes.tscn" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://bn1t0w6mog4iu" path="res://Gem.tscn" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://bejnwai4tqev1" path="res://level_completed.tscn" id="5_036b0"]
 
 [node name="World" type="Node2D" unique_id=1765084597]
 script = ExtResource("1_f3sb7")
@@ -27,7 +29,7 @@ floor_snap_length = 2.0
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" unique_id=1009220573]
-position = Vector2(272, 25.471878)
+position = Vector2(264, 15.999998)
 scale = Vector2(0.9999999, 0.81640625)
 polygon = PackedVector2Array(0, -50.798096, 0, -1.8028755, 0, 104, 8, 104, 8, -50.798096)
 
@@ -44,3 +46,23 @@ position = Vector2(112, 168)
 
 [node name="Spikes4" parent="." unique_id=751263347 instance=ExtResource("3_tlwt5")]
 position = Vector2(128, 168)
+
+[node name="Gem" parent="." unique_id=73515373 instance=ExtResource("4_aqk2v")]
+position = Vector2(104, 128)
+
+[node name="Gem2" parent="." unique_id=393744281 instance=ExtResource("4_aqk2v")]
+position = Vector2(288, 88)
+
+[node name="Gem4" parent="." unique_id=866147703 instance=ExtResource("4_aqk2v")]
+position = Vector2(288, 32)
+
+[node name="Gem5" parent="." unique_id=666513849 instance=ExtResource("4_aqk2v")]
+position = Vector2(278, -48)
+
+[node name="Gem3" parent="." unique_id=1754119894 instance=ExtResource("4_aqk2v")]
+position = Vector2(24, -32)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=315684268]
+
+[node name="LevelCompleted" parent="CanvasLayer" unique_id=2055649501 instance=ExtResource("5_036b0")]
+visible = false

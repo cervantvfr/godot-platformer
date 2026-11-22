@@ -15,6 +15,10 @@ run/main_scene="uid://dyrot2so7f437"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Events="*uid://uh68k6k2b1ap"
+
 [display]
 
 window/size/viewport_width=320

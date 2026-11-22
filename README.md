@@ -31,6 +31,15 @@ from HeartBeast's Godot platformer tutorials.
   `hazard_area.tscn`, an `Area2D` on the **HazardArea** physics layer. The
   player's `HazardDetection` area watches only that layer, so any shape you
   add to a hazard area becomes deadly. See [Physics layers](#physics-layers).
+- **Gems and level completion:** five animated gems are scattered around the
+  level. Each is a `Gem.tscn` instance: an `Area2D` in the `Gems` group that
+  only detects the **Player** layer. Touch a gem to collect it; when the last
+  one is collected it emits `Events.level_completed`, and `world.gd` shows a
+  "Level Completed!" overlay and pauses the game. To add more gems, drop extra
+  `Gem.tscn` instances into `world.tscn`; the count updates automatically.
+- **Signal bus:** `Events.gd` is an autoload that holds game-wide signals
+  (currently just `level_completed`), so scenes can talk to each other without
+  holding direct references.
 - **Following camera:** a smoothed `Camera2D` on the player keeps them in
   view as they climb the tall walls of the level.
 - **Polygon terrain:** the level is built from `CollisionPolygon2D` shapes:
@@ -83,7 +92,7 @@ Layer names are set in `project.godot`:
 | Layer | Name         | Used by                                               |
 | ----- | ------------ | ----------------------------------------------------- |
 | 1     | `World`      | Terrain (`StaticBody2D` nodes in `world.tscn`)        |
-| 2     | `Player`     | The player's `CharacterBody2D`                        |
+| 2     | `Player`     | The player's `CharacterBody2D`; detected by gems      |
 | 3     | `HazardArea` | `hazard_area.tscn`; detected by the player to respawn |
 
 ## Running the project
@@ -98,9 +107,9 @@ Layer names are set in `project.godot`:
 
 | File                              | Purpose                                                    |
 | --------------------------------- | ---------------------------------------------------------- |
-| `project.godot`                   | Project settings: main scene, resolution, renderer, physics layer names |
-| `world.tscn`                      | Main scene: the level geometry (floor, outer walls, middle wall), spikes, and the player |
-| `world.gd`                        | Draws the terrain from its collision polygon and sets a black background |
+| `project.godot`                   | Project settings: main scene, resolution, renderer, physics layer names, `Events` autoload |
+| `world.tscn`                      | Main scene: the level geometry (floor, outer walls, middle wall), spikes, gems, the player, and the level-completed overlay |
+| `world.gd`                        | Draws the terrain from its collision polygon, sets a black background, and shows the overlay and pauses the game when the level is completed |
 | `player.tscn`                     | Player scene: cat sprite animations, collision shape, hazard detection area, coyote-jump timer, smoothed camera |
 | `player.gd`                       | Player movement, jumping, double jump, wall jump, coyote time, respawning on hazards, and animation logic |
 | `PlayerMovementData.gd`           | Resource script defining the tunable movement values       |
@@ -109,8 +118,13 @@ Layer names are set in `project.godot`:
 | `SlowPlayerMovementData.tres`     | Slow, floaty movement with low gravity                     |
 | `spikes.tscn`                     | Spike trap: a Kenney spike tile plus a hazard area         |
 | `hazard_area.tscn`                | Reusable `Area2D` on the HazardArea layer that respawns the player |
+| `Gem.tscn`                        | Collectible gem: animated sprite and pickup area in the `Gems` group |
+| `gem.gd`                          | Removes the gem on pickup and emits `Events.level_completed` when it was the last one |
+| `Events.gd`                       | Autoloaded signal bus (`level_completed`)                  |
+| `level_completed.tscn`            | "Level Completed!" overlay, shown on a `CanvasLayer` in `world.tscn` |
 | `Cat_*.png`                       | Cat character sprite sheets (32×32 frames) used by the player |
 | `Tiles/`                          | Kenney Pixel Platformer tiles (`tile_0068.png` is the spike) |
+| `Collectibles/`                   | TotusLotus animated collectibles (16×16); `gem/gem.png` is used for the gems |
 
 ## Credits
 
@@ -120,3 +134,5 @@ Layer names are set in `project.godot`:
   by [JumpButton](https://itch.io/profile/jumpbutton).
 - **Tiles:** [Pixel Platformer](https://kenney.nl/assets/pixel-platformer)
   by [Kenney](https://kenney.nl) (CC0).
+- **Collectibles:** [Animated Pixel Art Collectibles](https://totuslotus.itch.io/pixel-art-collectibles)
+  by [TotusLotus](https://totuslotus.itch.io).
