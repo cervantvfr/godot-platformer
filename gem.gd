@@ -5,7 +5,7 @@ extends Area2D
 func _ready() -> void:
 	handle_animation()
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	queue_free()
 	var gems = get_tree().get_node_count_in_group("Gems")
 	if (gems-1) == 0:

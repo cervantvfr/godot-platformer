@@ -5,35 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://bcjq6tr6120g4" path="res://spikes.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://bn1t0w6mog4iu" path="res://Gem.tscn" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bejnwai4tqev1" path="res://level_completed.tscn" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://uph173dyert0" path="res://level_tile_map.tscn" id="6_dwbse"]
 
 [node name="World" type="Node2D" unique_id=1765084597]
 script = ExtResource("1_f3sb7")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=693173677]
-collision_mask = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=900520274]
-position = Vector2(-8, 48)
-scale = Vector2(0.4669619, 0.46696183)
-polygon = PackedVector2Array(0, -222.71628, 17.132019, -222.71628, 17.132019, 137.05618, 68.528076, 137.05618, 119.92413, 188.45224, 256.9803, 188.45224, 256.9803, 256.98032, 325.50836, 256.98032, 325.50836, 188.45224, 411.16846, 188.45222, 411.16846, 137.05618, 462.5645, 137.05618, 513.9606, 188.45222, 599.62067, 188.45222, 599.62067, 274.11234, 668.14874, 274.11234, 668.14874, -222.71628, 685.28076, -222.71628, 685.28076, 308.37637, 0, 308.37637)
-
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D" unique_id=1629621702]
 
 [node name="CharacterBody2D" parent="." unique_id=167670317 instance=ExtResource("2_fj7yv")]
 position = Vector2(16, 112)
 scale = Vector2(0.4669619, 0.46696183)
 floor_constant_speed = true
 floor_snap_length = 2.0
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1869543127]
-collision_mask = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" unique_id=1009220573]
-position = Vector2(264, 15.999998)
-scale = Vector2(0.9999999, 0.81640625)
-polygon = PackedVector2Array(0, -50.798096, 0, -1.8028755, 0, 104, 8, 104, 8, -50.798096)
-
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2/CollisionPolygon2D" unique_id=476841068]
 
 [node name="Spikes" parent="." unique_id=1711789327 instance=ExtResource("3_tlwt5")]
 position = Vector2(272, 176)
@@ -42,13 +23,13 @@ position = Vector2(272, 176)
 position = Vector2(288, 176)
 
 [node name="Spikes3" parent="." unique_id=957595696 instance=ExtResource("3_tlwt5")]
-position = Vector2(112, 168)
+position = Vector2(112, 176)
 
 [node name="Spikes4" parent="." unique_id=751263347 instance=ExtResource("3_tlwt5")]
-position = Vector2(128, 168)
+position = Vector2(128, 176)
 
 [node name="Gem" parent="." unique_id=73515373 instance=ExtResource("4_aqk2v")]
-position = Vector2(104, 128)
+position = Vector2(104, 136)
 
 [node name="Gem2" parent="." unique_id=393744281 instance=ExtResource("4_aqk2v")]
 position = Vector2(288, 88)
@@ -66,3 +47,6 @@ position = Vector2(24, -32)
 
 [node name="LevelCompleted" parent="CanvasLayer" unique_id=2055649501 instance=ExtResource("5_036b0")]
 visible = false
+
+[node name="LevelTileMap" parent="." unique_id=85203293 instance=ExtResource("6_dwbse")]
+layer_0/tile_data = PackedInt32Array(-196609, 23, 0, -131073, 123, 0, -65537, 123, 0, -1, 123, 0, 65535, 123, 0, 131071, 123, 0, 196607, 123, 0, 262143, 123, 0, 327679, 123, 0, 393215, 123, 0, 458751, 123, 0, 524287, 122, 0, 589823, 122, 0, 655359, 122, 0, 720895, 122, 0, 786431, 122, 0, 720896, 122, 0, 720897, 122, 0, 720898, 122, 0, 720899, 122, 0, 720900, 122, 0, 720901, 122, 0, 720902, 122, 0, 720903, 62, 0, 720904, 62, 0, 720905, 122, 0, 720906, 122, 0, 720907, 122, 0, 720908, 122, 0, 720909, 122, 0, 720910, 122, 0, 720911, 122, 0, 720912, 122, 0, 720913, 62, 0, 720914, 62, 0, 720915, 122, 0, 655379, 121, 0, 589843, 121, 0, 524307, 121, 0, 458771, 121, 0, 393235, 121, 0, 327699, 121, 0, 262163, 121, 0, 196627, 121, 0, 131091, 121, 0, 65555, 121, 0, 19, 121, 0, -65517, 121, 0, -131053, 121, 0, -196589, 121, 0, -262125, 21, 0, 458752, 22, 0, 458753, 23, 0, 524288, 122, 0, 524289, 122, 0, 524290, 23, 0, 589826, 122, 0, 589827, 22, 0, 589828, 22, 0, 589829, 22, 0, 589830, 23, 0, 655366, 123, 0, 655365, 122, 0, 655364, 122, 0, 655363, 122, 0, 655362, 122, 0, 655361, 122, 0, 655360, 122, 0, 589824, 122, 0, 589825, 122, 0, 589833, 21, 0, 589834, 22, 0, 589835, 22, 0, 589836, 22, 0, 589837, 22, 0, 589838, 22, 0, 589839, 22, 0, 589840, 23, 0, 655376, 123, 0, 655375, 122, 0, 655374, 122, 0, 655373, 122, 0, 655372, 122, 0, 655371, 122, 0, 655370, 122, 0, 655369, 121, 0, 393232, 143, 0, 327696, 123, 0, 262160, 123, 0, 196624, 123, 0, 131088, 123, 0, 65552, 123, 0, 16, 123, 0, -65520, 123, 0, -131056, 23, 0, 786430, 121, 0, 720894, 121, 0, 655358, 121, 0, 589822, 121, 0, 524286, 121, 0, 458750, 121, 0, 393214, 121, 0, 327678, 121, 0, 262142, 121, 0, 196606, 121, 0, 131070, 121, 0, 65534, 121, 0, -2, 121, 0, -65538, 121, 0, -131074, 121, 0, -196610, 21, 0, 393231, 141, 0, 327695, 121, 0, 262159, 121, 0, 196623, 121, 0, 131087, 121, 0, 65551, 121, 0, 15, 121, 0, -65521, 121, 0, -131057, 21, 0, -262124, 23, 0, -196588, 123, 0, -131052, 123, 0, -65516, 123, 0, 20, 123, 0, 65556, 123, 0, 131092, 123, 0, 196628, 123, 0, 262164, 123, 0, 327700, 123, 0, 393236, 123, 0, 458772, 123, 0, 524308, 123, 0, 589844, 123, 0, 655380, 123, 0, 720916, 123, 0, 851966, 141, 0, 851967, 142, 0, 786432, 142, 0, 786433, 142, 0, 786434, 142, 0, 786435, 142, 0, 786436, 142, 0, 786437, 142, 0, 786438, 142, 0, 786439, 142, 0, 786440, 142, 0, 786441, 142, 0, 786442, 142, 0, 786443, 142, 0, 786444, 142, 0, 786445, 142, 0, 786446, 142, 0, 786447, 142, 0, 786448, 142, 0, 786449, 142, 0, 786450, 142, 0, 786451, 142, 0, 786452, 143, 0)

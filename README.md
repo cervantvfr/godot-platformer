@@ -23,7 +23,9 @@ from HeartBeast's Godot platformer tutorials.
   live in a `PlayerMovementData` resource, so you can change the feel without
   touching code. See [Tuning movement](#tuning-movement).
 - **Slopes:** the player keeps a constant speed on slopes up to 50° and snaps
-  to the floor going downhill instead of bouncing off.
+  to the floor going downhill instead of bouncing off. On the player instance
+  in `world.tscn`, `floor_constant_speed` is on and `floor_snap_length` is 2.
+  `floor_max_angle` (50°) is set on the player scene.
 - **Animated cat character:** idle, run, jump, double-jump, and wall-cling
   animations, with the sprite flipping to face the direction of movement.
 - **Spikes and respawning:** touching spikes sends the player back to where
@@ -42,11 +44,13 @@ from HeartBeast's Godot platformer tutorials.
   holding direct references.
 - **Following camera:** a smoothed `Camera2D` on the player keeps them in
   view as they climb the tall walls of the level.
-- **Polygon terrain:** the level is built from `CollisionPolygon2D` shapes:
-  the floor and tall outer walls, plus a thin wall in the middle for
-  practising wall jumps. At runtime `world.gd` copies the main terrain's
-  collision shape into a `Polygon2D`, so the shape you edit is also what's
-  drawn on screen.
+- **Tilemap level:** the terrain is a `TileMap` (`level_tile_map.tscn`)
+  instanced into `world.tscn`. The tileset is built from the Kenney tiles in
+  `Tiles/`. Its physics layer is **World**, so painted tiles collide with the
+  player. Solid tiles use a 16×16 box; some tiles use a sloped collision
+  polygon. The tileset also has an autotile terrain named `Autotile`. The map
+  has two layers, **Base** and **Slope**. The level you play is painted on
+  **Base**, and those cells are stored on the instance in `world.tscn`.
 - **Pixel-perfect display:** renders at 320×180 and scales up to a 1280×720
   window with nearest-neighbour filtering.
 
@@ -91,7 +95,7 @@ Layer names are set in `project.godot`:
 
 | Layer | Name         | Used by                                               |
 | ----- | ------------ | ----------------------------------------------------- |
-| 1     | `World`      | Terrain (`StaticBody2D` nodes in `world.tscn`)        |
+| 1     | `World`      | The `TileMap` tileset physics layer in `level_tile_map.tscn` |
 | 2     | `Player`     | The player's `CharacterBody2D`; detected by gems      |
 | 3     | `HazardArea` | `hazard_area.tscn`; detected by the player to respawn |
 
@@ -108,8 +112,9 @@ Layer names are set in `project.godot`:
 | File                              | Purpose                                                    |
 | --------------------------------- | ---------------------------------------------------------- |
 | `project.godot`                   | Project settings: main scene, resolution, renderer, physics layer names, `Events` autoload |
-| `world.tscn`                      | Main scene: the level geometry (floor, outer walls, middle wall), spikes, gems, the player, and the level-completed overlay |
-| `world.gd`                        | Draws the terrain from its collision polygon, sets a black background, and shows the overlay and pauses the game when the level is completed |
+| `world.tscn`                      | Main scene: the tilemap level, spikes, gems, the player, and the level-completed overlay |
+| `world.gd`                        | Sets a black background, and shows the overlay and pauses the game when the level is completed |
+| `level_tile_map.tscn`             | `TileMap` scene: Kenney tileset (World-layer collision, `Autotile` terrain) with **Base** and **Slope** layers. The painted cells live on the instance in `world.tscn` |
 | `player.tscn`                     | Player scene: cat sprite animations, collision shape, hazard detection area, coyote-jump timer, smoothed camera |
 | `player.gd`                       | Player movement, jumping, double jump, wall jump, coyote time, respawning on hazards, and animation logic |
 | `PlayerMovementData.gd`           | Resource script defining the tunable movement values       |
@@ -122,8 +127,8 @@ Layer names are set in `project.godot`:
 | `gem.gd`                          | Removes the gem on pickup and emits `Events.level_completed` when it was the last one |
 | `Events.gd`                       | Autoloaded signal bus (`level_completed`)                  |
 | `level_completed.tscn`            | "Level Completed!" overlay, shown on a `CanvasLayer` in `world.tscn` |
-| `Cat_*.png`                       | Cat character sprite sheets (32×32 frames) used by the player |
-| `Tiles/`                          | Kenney Pixel Platformer tiles (`tile_0068.png` is the spike) |
+| `Cat/`                            | Cat character sprite sheets (32×32 frames). The player uses idle, walk, jump, double jump, and wall cling |
+| `Tiles/`                          | Kenney Pixel Platformer tiles. They are the TileMap sources; `tile_0068.png` is also the spike sprite |
 | `Collectibles/`                   | TotusLotus animated collectibles (16×16); `gem/gem.png` is used for the gems |
 
 ## Credits

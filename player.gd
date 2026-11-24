@@ -84,5 +84,5 @@ func update_animations(direction):
 	else:
 		animated_sprite_2d.play("idle")
 
-func _on_hazard_detection_area_entered(area: Area2D) -> void:
+func _on_hazard_detection_area_entered(_area: Area2D) -> void:
 	global_position = starting_position
